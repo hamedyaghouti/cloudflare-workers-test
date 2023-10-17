@@ -27,6 +27,16 @@ export interface Env {
 
 export default {
 	async fetch(request: Request, env: Env, ctx: ExecutionContext): Promise<Response> {
-		return new Response('Hello World!');
+		const data = {
+			value: 'Hello World!',
+		};
+
+		const json = JSON.stringify(data, null, 2);
+
+		return new Response(json, {
+			headers: {
+				'content-type': 'application/json;charset=UTF-8',
+			},
+		});
 	},
 };
